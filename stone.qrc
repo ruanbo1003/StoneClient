@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>UI/settting.png</file>
+        <file>UI/stone.png</file>
+    </qresource>
+</RCC>
