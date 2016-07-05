@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,11 +14,16 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        stone.cpp
+        stone.cpp \
+    rubotcp.cpp
 
-HEADERS  += stone.hpp
+HEADERS  += stone.hpp \
+    rubotcp.hpp \
+    log.hpp
 
 FORMS    += stone.ui
 
 RESOURCES += \
     stone.qrc
+
+CONFIG += console

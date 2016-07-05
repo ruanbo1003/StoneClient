@@ -1,7 +1,9 @@
 #include "stone.hpp"
 #include "ui_stone.h"
 
-#include <QtNetwork/QTcpSocket>
+#include <QDebug>
+#include "rubotcp.hpp"
+#include "log.hpp"
 
 Stone::Stone(QWidget *parent) :
     QMainWindow(parent),
@@ -17,7 +19,17 @@ Stone::~Stone()
 
 void Stone::on_connectBtn_clicked()
 {
-    QTcpSocket *client = new QTcpSocket(this);
-    client->connectToHost(QHostAddress("127.0.0.1"), 8881);
+    Log("connect button clicked");
+
+    RuboTcp *tcp = new RuboTcp();
+    tcp->doConnect();
 
 }
+
+
+
+
+
+
+
+

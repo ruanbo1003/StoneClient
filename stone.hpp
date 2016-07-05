@@ -15,6 +15,9 @@ public:
     explicit Stone(QWidget *parent = 0);
     ~Stone();
 
+private slots:
+    void on_connectBtn_clicked();
+
 private:
     Ui::Stone *ui;
 };
