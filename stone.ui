@@ -10,30 +10,17 @@
     <height>539</height>
    </rect>
   </property>
+  <property name="focusPolicy">
+   <enum>Qt::NoFocus</enum>
+  </property>
   <property name="windowTitle">
    <string>Stone</string>
   </property>
+  <property name="windowIcon">
+   <iconset theme="stone.ico" resource="stone.qrc">
+    <normaloff>:/UI/stone.ico</normaloff>:/UI/stone.ico</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QToolButton" name="settingBtn">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>450</y>
-      <width>21</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="text">
-     <string>...</string>
-    </property>
-    <property name="icon">
-     <iconset resource="stone.qrc">
-      <normaloff>:/UI/settting.png</normaloff>:/UI/settting.png</iconset>
-    </property>
-   </widget>
    <widget class="QPushButton" name="connectBtn">
     <property name="geometry">
      <rect>

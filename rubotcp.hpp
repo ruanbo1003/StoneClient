@@ -5,13 +5,16 @@
 #include <QtNetwork/QTcpSocket>
 #include <QtNetwork/QAbstractSocket>
 
+class Stone;
+
 class RuboTcp : public QObject
 {
     Q_OBJECT
 public:
-    explicit RuboTcp(QObject *parent = 0);
+    explicit RuboTcp(Stone* win, QObject *parent = 0);
 
-    void doConnect();
+
+    bool doConnect();
 signals:
 
 public slots:
@@ -22,7 +25,8 @@ public slots:
 
 
 private:
-    QTcpSocket *socket;
+    Stone *_main_win;
+    QTcpSocket *_socket;
 };
 
 #endif // RUBOTCP_HPP

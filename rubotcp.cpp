@@ -2,30 +2,37 @@
 
 #include <QDebug>
 #include "log.hpp"
+#include "stone.hpp"
 
-
-RuboTcp::RuboTcp(QObject *parent) : QObject(parent)
+RuboTcp::RuboTcp(Stone* win, QObject *parent) : QObject(parent)
 {
-
+    _main_win = win;
 }
 
-void RuboTcp::doConnect()
+bool RuboTcp::doConnect()
 {
-    socket = new QTcpSocket(this);
+    _socket = new QTcpSocket(this);
 
-    connect(socket, SIGNAL(connected()), this, SLOT(connected()));
-    connect(socket, SIGNAL(disconnected()), this, SLOT(disconnected()));
-    connect(socket, SIGNAL(bytesWritten(qint64)), this, SLOT(byteWritten(qint64)));
-    connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()));
+    connect(_socket, SIGNAL(connected()), this, SLOT(connected()));
+    connect(_socket, SIGNAL(connected()), _main_win, SLOT(on_connected()));
+
+    connect(_socket, SIGNAL(disconnected()), this, SLOT(disconnected()));
+    connect(_socket, SIGNAL(disconnected()), _main_win, SLOT(on_disconnected()));
+
+    connect(_socket, SIGNAL(bytesWritten(qint64)), this, SLOT(byteWritten(qint64)));
+    connect(_socket, SIGNAL(readyRead()), this, SLOT(readyRead()));
 
     Log("connecting...");
 
-    socket->connectToHost("127.0.0.1", 8881);
+    _socket->connectToHost("127.0.0.1", 8881);
 
-    if(!socket->waitForConnected(5000))
+    if(!_socket->waitForConnected(3000))
     {
         Log("connect failed");
+        return false;
     }
+
+    return true;
 }
 
 void RuboTcp::connected()
@@ -49,5 +56,5 @@ void RuboTcp::readyRead()
 {
     qDebug() << "reading...";
 
-    QByteArray data = socket->readAll();
+    QByteArray data = _socket->readAll();
 }

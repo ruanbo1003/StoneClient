@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>UI/settting.png</file>
         <file>UI/stone.png</file>
+        <file>UI/stone.ico</file>
     </qresource>
 </RCC>
